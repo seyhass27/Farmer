@@ -1,0 +1,37 @@
+{
+  "name": "Farmer",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "native-base": "^2.12.1",
+    "react": "16.8.3",
+    "react-native": "0.59.3",
+    "react-native-action-button": "^2.8.5",
+    "react-native-firebase": "^5.3.1",
+    "react-native-gesture-handler": "^1.1.0",
+    "react-native-i18n": "^2.0.15",
+    "react-native-parallax-scroll-view": "^0.21.3",
+    "react-native-reanimated": "^1.0.0-alpha.12",
+    "react-native-snap-carousel": "^3.7.5",
+    "react-native-super-grid": "^3.0.3",
+    "react-native-tab-view": "^2.0.3",
+    "react-native-vector-icons": "^6.4.2",
+    "react-navigation": "^3.6.1",
+    "rn-viewpager": "^1.2.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/runtime": "^7.4.2",
+    "babel-jest": "^24.6.0",
+    "jest": "^24.6.0",
+    "metro-react-native-babel-preset": "^0.53.1",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
