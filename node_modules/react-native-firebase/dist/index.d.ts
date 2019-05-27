@@ -928,11 +928,18 @@ declare module 'react-native-firebase' {
       verificationId: string | null;
     }
 
+    interface NativeError extends Error {
+      code: string;
+      message: string;
+      nativeErrorCode?: string;
+      nativeErrorMessage?: string;
+    }
+
     type PhoneAuthSnapshot = {
       state: 'sent' | 'timeout' | 'verified' | 'error';
       verificationId: string;
       code: string | null;
-      error: Error | null;
+      error: NativeError | null;
     };
 
     type PhoneAuthError = {
@@ -2336,6 +2343,7 @@ declare module 'react-native-firebase' {
         readonly firestore: Firestore;
         readonly id: string;
         readonly parent: DocumentReference;
+        readonly path: string;
 
         add(data: object): Promise<DocumentReference>;
 
@@ -2352,6 +2360,8 @@ declare module 'react-native-firebase' {
         get(options?: Types.GetOptions): Promise<QuerySnapshot>;
 
         limit(limit: number): Query;
+
+        isEqual(otherCollectionReference: CollectionReference): boolean;
 
         onSnapshot(
           onNext: Query.ObserverOnNext,

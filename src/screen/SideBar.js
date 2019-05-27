@@ -1,7 +1,7 @@
 import React from "react";
 import { AppRegistry, Image, StatusBar, Alert } from "react-native";
 import PostProductScreen from './PostProductScreen';
-import { createStackNavigator, createAppContainer, createDrawerNavigator } from "react-navigation";
+import { createStackNavigator, createAppContainer, createDrawerNavigator, withNavigation } from "react-navigation";
 import {
   Button,
   Text,
@@ -45,7 +45,7 @@ const routes = [{
 
 const PostProduct = ({ navigation }) => (<PostProductScreen navigation={navigation}/>);
 
-export default class SideBar extends React.Component {
+class SideBar extends React.Component {
   render() {
     //const {navigate} = this.props.navigation;
     const navigation = this.props.navigation ;
@@ -100,3 +100,5 @@ export default class SideBar extends React.Component {
     );
   }
 }
+
+export default SideBar;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { createStackNavigator, createAppContainer, createDrawerNavigator } from "react-navigation";
+import { createStackNavigator, createAppContainer, createDrawerNavigator, withNavigation } from "react-navigation";
 import TabNavigation from '../navigation/TabNavigation';
 import CHeader from '../components/CHeader';
 import DetailScreen from '../screen/DetailProductScreen';
@@ -30,8 +30,10 @@ const ScreenController = createStackNavigator({
             // null
             <CHeader Left = {
                 <Button transparent
-                onPress={()=>{
+                onPress={
+                ()=>{
                     Alert.alert('Menu Pressed')
+                    this.prop
                     // this.refs['DRAWER_REF'].openDrawer();
                 }}>
                     <Icon name='menu' />
@@ -118,6 +120,7 @@ const ScreenManager = createAppContainer(ScreenController);
 class ManagerScreen extends Component {
     constructor(props) {
       super(props);
+      global.test = 'test';
       this.state = {
       };
     }
@@ -151,7 +154,7 @@ class ManagerScreen extends Component {
                         </Button>
                     }
                     title = 'Farmer'/> */}
-                    <ScreenManager/>
+                    <ScreenManager />
                 </Container>
             </DrawerLayoutAndroid>
                 

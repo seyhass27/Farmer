@@ -7,11 +7,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "firebase": "^6.0.4",
     "native-base": "^2.12.1",
     "react": "16.8.3",
     "react-native": "0.59.3",
     "react-native-action-button": "^2.8.5",
-    "react-native-firebase": "^5.3.1",
+    "react-native-firebase": "^5.4.0",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-i18n": "^2.0.15",
     "react-native-parallax-scroll-view": "^0.21.3",
