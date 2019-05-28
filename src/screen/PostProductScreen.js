@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import CHeader from '../components/CHeader';
 import { 
   Container, 
@@ -16,13 +16,68 @@ import {
   Input,
   Textarea, Form 
 } from 'native-base';
+import firebase from 'firebase';
 
 class PostProductScreen extends Component {
   constructor(props) {
     super(props);
+    // console.ignoredYellowBox = [
+    //   'Setting a timer'
+    // ];
+    console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
     this.state = {
       addedImg : false,
+      timer: null,
+      
     };
+  }
+
+  componentWillMount() {
+
+    firebase.database().ref('/').on('value', (data)=>{
+      const test = data.toJSON();
+      //alert(data.numChildren())
+      // global.data = data.toJSON();
+      // alert(test[0].product_name);
+    })
+    //console.log(firebase)
+  }
+
+  _insertData(){
+    var dataLenght = 0;
+    firebase.database().ref('/').on("value", (dataSet)=>{
+      //alert(dataSet.numChildren())
+      dataLenght = dataSet.numChildren()
+      //alert(dataLenght)
+      
+    })
+    setTimeout(() => {
+      firebase.database().ref('/'+ dataLenght).set(
+        {
+
+          address : "Phnom Penh",
+          amount : 150,
+          phone : "093291068",
+          price : 0.7,
+          product_images : {
+            main_image : {
+              "uri" : "https://firebasesto...-acbf-565e24ca637b"
+            },
+            other_image : {
+              "uri" : "gs://farmer-6a64a.appspot.com/rice-2-1.jpg"
+            }
+          },
+          product_name : "Product A",
+          user_profile_image : "gs://farmer-6a64a.appspot.com/profile-default-02.png",
+          username : "User H"
+        }
+      ).then(() => {
+          alert('INSERTED !');
+      }).catch((error) => {
+          alert(error);
+      });
+
+    }, 0);
   }
 
   render() {
@@ -79,7 +134,7 @@ class PostProductScreen extends Component {
               {/* Input */}
               <Form>
                 <Item>
-                  <Input placeholder="Product Name" />
+                  <Input placeholder="Product Name"/>
                 </Item>
                 <Item>
                   <Input placeholder="Quantity" />
@@ -106,7 +161,8 @@ class PostProductScreen extends Component {
                   alignSelf: 'center',
                   marginTop: 10,
                   marginBottom : 30
-                }}>
+                }}
+                onPress={this._insertData}>
                   <Text style={{
                     fontSize: 18,
                     color: '#fff'

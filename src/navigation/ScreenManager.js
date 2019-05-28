@@ -121,6 +121,7 @@ class ManagerScreen extends Component {
     constructor(props) {
       super(props);
       global.test = 'test';
+      console.disableYellowBox = true;
       this.state = {
       };
     }

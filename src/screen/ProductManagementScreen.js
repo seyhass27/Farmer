@@ -5,6 +5,7 @@ import {
   Container, Content, List, ListItem, Thumbnail, Left, Body, Right, Button, Icon
 } from 'native-base';
 import styles from '../asset/styles/ManageProductsStyle';
+import firebase from 'firebase';
 
 class ProductManagementScreen extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class ProductManagementScreen extends Component {
     this.state = {
       hadLoged: false,
       haveProducts: true,
+      timer: null,
       products : [
         {
           id : 1,
@@ -84,6 +86,18 @@ class ProductManagementScreen extends Component {
         }
       ]
     };
+  }
+
+  componentWillMount() {
+
+
+    firebase.database().ref('/').on('value', (data)=>{
+      const dataJSON = data.toJSON();
+      //alert(data.numChildren())
+      // global.data = data.toJSON();
+      // alert(test[0].product_name);
+    })
+    //console.log(firebase)
   }
 
   _keyExtractor = (item, index) => item.id;

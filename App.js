@@ -24,12 +24,15 @@ export default class App extends Component {
 
   constructor(props) {
     super(props);
-
+    console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
     this.state = {
     };
   }
 
   componentWillMount() {
+
+    
+
     // Your web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyDkQuw1U7gMx7o8GhIhJOpUw4nE6eHP0Zs",
@@ -40,16 +43,21 @@ export default class App extends Component {
       messagingSenderId: "348717835238",
       appId: "1:348717835238:web:79982ef486f528d1"
     };
-  
+    global.test2 = {'test':[
+      {
+        'name': 'test 2'
+      }
+    ]}
   
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     
-    alert(firebase.database().ref('0').on('value', (data)=>{
+    firebase.database().ref('/').on('value', (data)=>{
       const test = data.toJSON();
-      global.data = data.toJSON();
-      alert(global.data.Product1.product_images.main_image.uri);
-    }))
+      global.productData = data.toJSON();
+      // alert(global.productData)
+      //alert(global.data[0].Product1.product_images.main_image.uri);
+    })
     //console.log(firebase)
   }
 

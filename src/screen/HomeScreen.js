@@ -12,13 +12,17 @@ import SideBar from './SideBar';
 import { FlatGrid } from 'react-native-super-grid';
 import ActionButton from 'react-native-action-button';
 import Icons from 'react-native-vector-icons/Ionicons';
+import firebase from 'firebase';
 
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+        isloading : true,
         layout: 'list',
-        data : [
+        products : null,
+        data : 
+        [
             { 
                 id : 1,
                 name: 'TURQUOISE', 
@@ -83,6 +87,18 @@ class HomeScreen extends Component {
     };
   }
   
+  componentWillMount() {
+    const data_product = null;
+    firebase.database().ref('/').on('value', (data)=>{
+        const test = data.toJSON();
+        this.setState({products : data.toJSON(), isloading : false})
+        //alert(this.state.isloading)
+        global.listProducts = data.toJSON();
+    })
+
+  }
+
+
   _keyExtractor = (item, index) => item.id;
 
   _renderItem = ({item}) => (
@@ -106,7 +122,7 @@ class HomeScreen extends Component {
         <Card>
             <CardItem>
             <Left>
-                <Thumbnail source={item.profile_url.uri} />
+                {this.state.isloading ? <Thumbnail source={item.profile_url.uri} /> : null}
                 <Body>
                 <Text>{item.name}</Text>
                 <Text note>{item.phone}</Text>
@@ -123,13 +139,18 @@ class HomeScreen extends Component {
             </CardItem>
             <CardItem>
             <Left>
-                <Button transparent onPress={()=>{alert(item.img_url.uri)}}>
+                <Button transparent onPress={()=>{
+                    this.state.isloading? alert('Loading..'):alert('Load Complete')
+                    //alert(this.state.products)
+                }}>
                 <Icon active name="thumbs-up" />
                 <Text>12 Likes</Text>
                 </Button>
             </Left>
             <Body>
-                <Button transparent>
+                <Button transparent onPress={()=>{
+                    alert(this.state.products)
+                }} >
                 <Icon active name="chatbubbles" />
                 <Text>4 Comments</Text>
                 </Button>
@@ -142,6 +163,14 @@ class HomeScreen extends Component {
         </Card>
       </TouchableOpacity>
   );
+
+  _likeButtonPressed(){
+    //alert(global.listProducts[0].username)
+    
+    //alert()
+    // alert(this.state.products[0].product_name)
+    //alert(global.listProducts[0].product_name);
+  }
   
   render() {
       
