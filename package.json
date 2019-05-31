@@ -16,7 +16,7 @@
     "react-native-gesture-handler": "^1.1.0",
     "react-native-i18n": "^2.0.15",
     "react-native-parallax-scroll-view": "^0.21.3",
-    "react-native-reanimated": "^1.0.0-alpha.12",
+    "react-native-reanimated": "^1.0.1",
     "react-native-snap-carousel": "^3.7.5",
     "react-native-super-grid": "^3.0.3",
     "react-native-tab-view": "^2.0.3",

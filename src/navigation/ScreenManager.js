@@ -27,19 +27,19 @@ const ScreenController = createStackNavigator({
         screen : TabNavigation,
         navigationOptions: {
             header : 
-            // null
-            <CHeader Left = {
-                <Button transparent
-                onPress={
-                ()=>{
-                    Alert.alert('Menu Pressed')
-                    this.prop
-                    // this.refs['DRAWER_REF'].openDrawer();
-                }}>
-                    <Icon name='menu' />
-                </Button>
-            }
-            title = 'Farmer'/>,
+            null
+            // <CHeader Left = {
+            //     <Button transparent
+            //     onPress={
+            //     ()=>{
+            //         Alert.alert('Menu Pressed')
+            //         this.prop
+            //         // this.refs['DRAWER_REF'].openDrawer();
+            //     }}>
+            //         <Icon name='menu' />
+            //     </Button>
+            // }
+            // title = 'Farmer'/>,
         }
     },
     Detail : { 
@@ -123,6 +123,7 @@ class ManagerScreen extends Component {
       global.test = 'test';
       console.disableYellowBox = true;
       this.state = {
+          home : true
       };
     }
     openDrawer(){
