@@ -14,6 +14,8 @@ import ActionButton from 'react-native-action-button';
 import Icons from 'react-native-vector-icons/Ionicons';
 import firebase from 'firebase';
 
+
+
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -87,15 +89,19 @@ class HomeScreen extends Component {
     };
   }
   
-  componentWillMount() {
+  async componentWillMount() {
     const data_product = null;
-    firebase.database().ref('/').on('value', (data)=>{
-        const test = data.toJSON();
-        this.setState({products : data.toJSON(), isloading : false})
-        //alert(this.state.isloading)
-        global.listProducts = data.toJSON();
-    })
+    // firebase.database().ref('/').on('value', (data)=>{
+    //     const test = data.toJSON();
+    //     this.setState({products : data.toJSON(), isloading : false})
+    //     //alert(this.state.isloading)
+    //     //global.listProducts = data.toJSON();
+    // })
+    await fetch(`https://farmer-6a64a.firebaseio.com/products.json`)
+      .then(res => res.json())
+      .then(json => this.setState({ products: json , isloading : false}));
 
+    alert(this.state.products)
   }
 
 
@@ -140,7 +146,7 @@ class HomeScreen extends Component {
             <CardItem>
             <Left>
                 <Button transparent onPress={()=>{
-                    this.state.isloading? alert('Loading..'):alert('Load Complete')
+                    this.state.isloading? alert('Loading..'):alert(this.state.products.product0.product_name)
                     //alert(this.state.products)
                 }}>
                 <Icon active name="thumbs-up" />

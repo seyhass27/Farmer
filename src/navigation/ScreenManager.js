@@ -22,25 +22,53 @@ const openDrawer = () =>{
 const closeDrawer = () => {
     this.drawer._root.close()
 }
-const ScreenController = createStackNavigator({
+
+const tabViewController = createStackNavigator({
     App : { 
         screen : TabNavigation,
         navigationOptions: {
             header : 
-            null
-            // <CHeader Left = {
-            //     <Button transparent
-            //     onPress={
-            //     ()=>{
-            //         Alert.alert('Menu Pressed')
-            //         this.prop
-            //         // this.refs['DRAWER_REF'].openDrawer();
-            //     }}>
-            //         <Icon name='menu' />
-            //     </Button>
-            // }
-            // title = 'Farmer'/>,
+            // null
+            <CHeader Left = {
+                <Button transparent
+                onPress={
+                ()=>{
+                    Alert.alert('Menu Pressed')
+                    //this.drawer._root.open() 
+                    // this.refs['DRAWER_REF'].openDrawer();
+                }}>
+                    <Icon name='menu' />
+                </Button>
+            }
+            title = 'Farmer'/>,
         }
+    },
+})
+
+const tabView = createAppContainer(tabViewController);
+const ScreenController = createDrawerNavigator({
+    // App : { 
+    //     screen : TabNavigation,
+    //     navigationOptions: {
+    //         header : 
+    //         // null
+    //         <CHeader Left = {
+    //             <Button transparent
+    //             onPress={
+    //             ()=>{
+    //                 Alert.alert('Menu Pressed')
+    //                 this.prop
+    //                 // this.refs['DRAWER_REF'].openDrawer();
+    //             }}>
+    //                 <Icon name='menu' />
+    //             </Button>
+    //         }
+    //         title = 'Farmer'/>,
+    //     }
+    // },
+    App : { 
+        screen : tabView,
+        
     },
     Detail : { 
         screen : DetailScreen,
@@ -55,12 +83,12 @@ const ScreenController = createStackNavigator({
             header : null,
         }
     },
-    Drawer : {
-        screen : SideBar,
-        navigationOptions: {
-            header : null,
-        }
-    },
+    // Drawer : {
+    //     screen : SideBar,
+    //     navigationOptions: {
+    //         header : null,
+    //     }
+    // },
     Profile : {
         screen : ProfileScreen,
         navigationOptions: {
@@ -110,7 +138,8 @@ const ScreenController = createStackNavigator({
         }
     },
 },{
-
+    initialRouteName: 'App',
+    contentComponent: SideBar
 });
 
 const ScreenManager = createAppContainer(ScreenController);
@@ -121,9 +150,9 @@ class ManagerScreen extends Component {
     constructor(props) {
       super(props);
       global.test = 'test';
+      this.openDrawer = this.openDrawer.bind(this);
       console.disableYellowBox = true;
       this.state = {
-          home : true
       };
     }
     openDrawer(){
@@ -135,14 +164,14 @@ class ManagerScreen extends Component {
     render() {
       return (
         <Container>
-            {/* <Drawer ref={(ref) => { this.drawer = ref; }} 
-            content={<SideBar navigator={this.navigator} />} 
-            onClose={() => this.closeDrawer()} > */}
-            <DrawerLayoutAndroid
+            <Drawer ref={(ref) => { this.drawer = ref; this.drawer._root.open() }} 
+            content={<SideBar navigator={this.navigation} />} 
+            onClose={() => this.closeDrawer()} >
+            {/* <DrawerLayoutAndroid
                 ref={'DRAWER_REF'}
                 drawerWidth={300}
                 drawerPosition={DrawerLayoutAndroid.positions.Left}
-                renderNavigationView={() => <SideBar/>}>
+                renderNavigationView={() => <SideBar/>}> */}
                 <Container>
                     {/* <CHeader Left = {
                         <Button transparent
@@ -158,9 +187,9 @@ class ManagerScreen extends Component {
                     title = 'Farmer'/> */}
                     <ScreenManager />
                 </Container>
-            </DrawerLayoutAndroid>
+            {/* </DrawerLayoutAndroid> */}
                 
-            {/* </Drawer> */}
+            </Drawer>
           
         </Container>
       );

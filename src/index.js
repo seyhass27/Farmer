@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import ScreenManager from './navigation/ScreenManager';
 import TestScreen from './screen/TestScreen';
 import TestManagerScreen from './screen/TestManagerScreen';
-import Screens from './navigation/DrawerNavigator'
+import Screens from './navigation/DrawerNavigator';
 
 class AppIndex extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class AppIndex extends Component {
 
   render() {
     return (
-        <Screens/>
+        <ScreenManager/>
     );
   }
 }

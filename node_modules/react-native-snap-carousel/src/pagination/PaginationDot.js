@@ -133,7 +133,6 @@ export default class PaginationDot extends PureComponent {
 
         return (
             <TouchableOpacity
-              accessible={false}
               style={dotContainerStyle}
               activeOpacity={tappable ? activeOpacity : 1}
               onPress={onPress}

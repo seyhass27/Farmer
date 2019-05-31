@@ -1,4 +1,4 @@
-#Fri May 31 20:04:47 ICT 2019
-base.0=C\:\\Users\\User\\Desktop\\Farmer\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Mon May 27 15:33:56 ICT 2019
+base.0=/Users/mac/Desktop/Farmer/Farmer/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex

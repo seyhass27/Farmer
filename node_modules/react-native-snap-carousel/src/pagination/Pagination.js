@@ -26,8 +26,7 @@ export default class Pagination extends PureComponent {
         inactiveDotStyle: ViewPropTypes ? ViewPropTypes.style : View.propTypes.style,
         renderDots: PropTypes.func,
         tappableDots: PropTypes.bool,
-        vertical: PropTypes.bool,
-        accessibilityLabel: PropTypes.string
+        vertical: PropTypes.bool
     };
 
     static defaultProps = {
@@ -124,7 +123,7 @@ export default class Pagination extends PureComponent {
     }
 
     render () {
-        const { dotsLength, containerStyle, vertical, accessibilityLabel } = this.props;
+        const { dotsLength, containerStyle, vertical } = this.props;
 
         if (!dotsLength || dotsLength < 2) {
             return false;
@@ -140,12 +139,7 @@ export default class Pagination extends PureComponent {
         ];
 
         return (
-            <View
-              pointerEvents={'box-none'}
-              style={style}
-              accessible={!!accessibilityLabel}
-              accessibilityLabel={accessibilityLabel}
-            >
+            <View pointerEvents={'box-none'} style={style}>
                 { this.dots }
             </View>
         );
