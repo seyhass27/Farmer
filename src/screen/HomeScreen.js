@@ -17,13 +17,6 @@ import firebase from 'firebase';
 
 
 class HomeScreen extends Component {
-
-    static navigationOptions = {
-        tabBarLabel: 'Home',
-        drawerIcon: ({tintColor}) =>(
-            <Icon name='ios-home' size={25} color={tintColor} />
-        )
-    };
   constructor(props) {
     super(props);
     this.state = {

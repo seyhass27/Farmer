@@ -34,7 +34,7 @@ const tabViewController = createStackNavigator({
                 onPress={
                 ()=>{
                     Alert.alert('Menu Pressed')
-                    this.prop
+                    //this.drawer._root.open() 
                     // this.refs['DRAWER_REF'].openDrawer();
                 }}>
                     <Icon name='menu' />
@@ -150,6 +150,7 @@ class ManagerScreen extends Component {
     constructor(props) {
       super(props);
       global.test = 'test';
+      this.openDrawer = this.openDrawer.bind(this);
       console.disableYellowBox = true;
       this.state = {
       };
@@ -163,14 +164,14 @@ class ManagerScreen extends Component {
     render() {
       return (
         <Container>
-            {/* <Drawer ref={(ref) => { this.drawer = ref; }} 
-            content={<SideBar navigator={this.navigator} />} 
-            onClose={() => this.closeDrawer()} > */}
-            <DrawerLayoutAndroid
+            <Drawer ref={(ref) => { this.drawer = ref; this.drawer._root.open() }} 
+            content={<SideBar navigator={this.navigation} />} 
+            onClose={() => this.closeDrawer()} >
+            {/* <DrawerLayoutAndroid
                 ref={'DRAWER_REF'}
                 drawerWidth={300}
                 drawerPosition={DrawerLayoutAndroid.positions.Left}
-                renderNavigationView={() => <SideBar/>}>
+                renderNavigationView={() => <SideBar/>}> */}
                 <Container>
                     {/* <CHeader Left = {
                         <Button transparent
@@ -186,9 +187,9 @@ class ManagerScreen extends Component {
                     title = 'Farmer'/> */}
                     <ScreenManager />
                 </Container>
-            </DrawerLayoutAndroid>
+            {/* </DrawerLayoutAndroid> */}
                 
-            {/* </Drawer> */}
+            </Drawer>
           
         </Container>
       );
