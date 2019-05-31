@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Image, Alert  } from 'react-native';
 import CHeader from '../components/CHeader';
 import { 
   Container, Content, List, ListItem, Thumbnail, Left, Body, Right, Button, Icon
@@ -12,8 +12,8 @@ class ProductManagementScreen extends Component {
     super(props);
     this.state = {
       hadLoged: false,
-      haveProducts: true,
-      timer: null,
+      haveProducts: false,
+      isloading: true,
       products : [
         {
           id : 1,
@@ -90,14 +90,31 @@ class ProductManagementScreen extends Component {
 
   componentWillMount() {
 
-
+  try {
     firebase.database().ref('/').on('value', (data)=>{
-      const dataJSON = data.toJSON();
-      //alert(data.numChildren())
-      // global.data = data.toJSON();
-      // alert(test[0].product_name);
+      // this.setState({products: data.toJSON(), })
+      alert(this.state.haveProducts)
+      this.setState({haveProducts : true})
+      setTimeout(()=>{
+        alert(this.state.haveProducts)
+      }, 2000) 
+      
+      // alert(this.state.products)
+      alert(this.state.products)
+      //this.setState({products : data.toJSON(), isloading : false})
     })
+  } catch (error) {
+    alert(error)
+  }
+    
     //console.log(firebase)
+  }
+  
+  componentDidMount(){
+    // this.setState({haveProducts : true})
+    // setTimeout(()=>{
+    //   alert(this.state.haveProducts)
+    // }, 2000) 
   }
 
   _keyExtractor = (item, index) => item.id;
@@ -153,6 +170,8 @@ class ProductManagementScreen extends Component {
   );
 
   render() {
+    var count = Object.keys(this.state.products).length;
+    //alert(count)
     return (
       <Container>
         <CHeader 

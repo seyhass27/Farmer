@@ -22,7 +22,8 @@ const openDrawer = () =>{
 const closeDrawer = () => {
     this.drawer._root.close()
 }
-const ScreenController = createStackNavigator({
+
+const tabViewController = createStackNavigator({
     App : { 
         screen : TabNavigation,
         navigationOptions: {
@@ -42,6 +43,33 @@ const ScreenController = createStackNavigator({
             title = 'Farmer'/>,
         }
     },
+})
+
+const tabView = createAppContainer(tabViewController);
+const ScreenController = createDrawerNavigator({
+    // App : { 
+    //     screen : TabNavigation,
+    //     navigationOptions: {
+    //         header : 
+    //         // null
+    //         <CHeader Left = {
+    //             <Button transparent
+    //             onPress={
+    //             ()=>{
+    //                 Alert.alert('Menu Pressed')
+    //                 this.prop
+    //                 // this.refs['DRAWER_REF'].openDrawer();
+    //             }}>
+    //                 <Icon name='menu' />
+    //             </Button>
+    //         }
+    //         title = 'Farmer'/>,
+    //     }
+    // },
+    App : { 
+        screen : tabView,
+        
+    },
     Detail : { 
         screen : DetailScreen,
         navigationOptions: {
@@ -55,12 +83,12 @@ const ScreenController = createStackNavigator({
             header : null,
         }
     },
-    Drawer : {
-        screen : SideBar,
-        navigationOptions: {
-            header : null,
-        }
-    },
+    // Drawer : {
+    //     screen : SideBar,
+    //     navigationOptions: {
+    //         header : null,
+    //     }
+    // },
     Profile : {
         screen : ProfileScreen,
         navigationOptions: {
@@ -110,7 +138,8 @@ const ScreenController = createStackNavigator({
         }
     },
 },{
-
+    initialRouteName: 'App',
+    contentComponent: SideBar
 });
 
 const ScreenManager = createAppContainer(ScreenController);

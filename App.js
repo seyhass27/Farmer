@@ -33,32 +33,32 @@ export default class App extends Component {
 
     
 
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: "AIzaSyDkQuw1U7gMx7o8GhIhJOpUw4nE6eHP0Zs",
-      authDomain: "farmer-6a64a.firebaseapp.com",
-      databaseURL: "https://farmer-6a64a.firebaseio.com",
-      projectId: "farmer-6a64a",
-      storageBucket: "farmer-6a64a.appspot.com",
-      messagingSenderId: "348717835238",
-      appId: "1:348717835238:web:79982ef486f528d1"
-    };
-    global.test2 = {'test':[
-      {
-        'name': 'test 2'
-      }
-    ]}
+    // // Your web app's Firebase configuration
+    // var firebaseConfig = {
+    //   apiKey: "AIzaSyDkQuw1U7gMx7o8GhIhJOpUw4nE6eHP0Zs",
+    //   authDomain: "farmer-6a64a.firebaseapp.com",
+    //   databaseURL: "https://farmer-6a64a.firebaseio.com",
+    //   projectId: "farmer-6a64a",
+    //   storageBucket: "farmer-6a64a.appspot.com",
+    //   messagingSenderId: "348717835238",
+    //   appId: "1:348717835238:web:79982ef486f528d1"
+    // };
+    // global.test2 = {'test':[
+    //   {
+    //     'name': 'test 2'
+    //   }
+    // ]}
   
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+    // // Initialize Firebase
+    // firebase.initializeApp(firebaseConfig);
     
-    firebase.database().ref('/').on('value', (data)=>{
-      const test = data.toJSON();
-      global.productData = data.toJSON();
-      // alert(global.productData)
-      //alert(global.data[0].Product1.product_images.main_image.uri);
-    })
-    //console.log(firebase)
+    // firebase.database().ref('/').on('value', (data)=>{
+    //   const test = data.toJSON();
+    //   global.productData = data.toJSON();
+    //   // alert(global.productData)
+    //   //alert(global.data[0].Product1.product_images.main_image.uri);
+    // })
+    // //console.log(firebase)
   }
 
   render() {
