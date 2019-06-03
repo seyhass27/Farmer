@@ -46,30 +46,30 @@ const tabViewController = createStackNavigator({
 })
 
 const tabView = createAppContainer(tabViewController);
-const ScreenController = createDrawerNavigator({
-    // App : { 
-    //     screen : TabNavigation,
-    //     navigationOptions: {
-    //         header : 
-    //         // null
-    //         <CHeader Left = {
-    //             <Button transparent
-    //             onPress={
-    //             ()=>{
-    //                 Alert.alert('Menu Pressed')
-    //                 this.prop
-    //                 // this.refs['DRAWER_REF'].openDrawer();
-    //             }}>
-    //                 <Icon name='menu' />
-    //             </Button>
-    //         }
-    //         title = 'Farmer'/>,
-    //     }
-    // },
+const ScreenController = createStackNavigator({
     App : { 
-        screen : tabView,
-        
+        screen : TabNavigation,
+        navigationOptions: {
+            header : 
+            // null
+            <CHeader Left = {
+                <Button transparent
+                onPress={
+                ()=>{
+                    Alert.alert('Menu Pressed')
+                    this.prop
+                    // this.refs['DRAWER_REF'].openDrawer();
+                }}>
+                    <Icon name='menu' />
+                </Button>
+            }
+            title = 'Farmer'/>,
+        }
     },
+    // App : { 
+    //     screen : tabView,
+        
+    // },
     Detail : { 
         screen : DetailScreen,
         navigationOptions: {
@@ -164,14 +164,14 @@ class ManagerScreen extends Component {
     render() {
       return (
         <Container>
-            <Drawer ref={(ref) => { this.drawer = ref; this.drawer._root.open() }} 
+            {/* <Drawer ref={(ref) => { this.drawer = ref; this.drawer._root.open() }} 
             content={<SideBar navigator={this.navigation} />} 
-            onClose={() => this.closeDrawer()} >
-            {/* <DrawerLayoutAndroid
+            onClose={() => this.closeDrawer()} > */}
+            <DrawerLayoutAndroid
                 ref={'DRAWER_REF'}
                 drawerWidth={300}
                 drawerPosition={DrawerLayoutAndroid.positions.Left}
-                renderNavigationView={() => <SideBar/>}> */}
+                renderNavigationView={() => <SideBar/>}>
                 <Container>
                     {/* <CHeader Left = {
                         <Button transparent
@@ -187,9 +187,9 @@ class ManagerScreen extends Component {
                     title = 'Farmer'/> */}
                     <ScreenManager />
                 </Container>
-            {/* </DrawerLayoutAndroid> */}
+            </DrawerLayoutAndroid>
                 
-            </Drawer>
+            {/* </Drawer> */}
           
         </Container>
       );
